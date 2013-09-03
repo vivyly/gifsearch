@@ -1,5 +1,6 @@
+import os
 # Django settings for gifsearch project.
-
+ROOT = os.path.abspath(os.path.dirname(__file__))
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -12,7 +13,7 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'gifsearch/gifengine.sqlite3',                      # Or path to database file if using sqlite3.
+        'NAME': os.path.join(ROOT, 'gifsearch.db'),  # Or path to database file if using sqlite3.
         # The following settings are not used with sqlite3:
         'USER': '',
         'PASSWORD': '',
@@ -121,8 +122,10 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'giflookup',
-    'gifgame'
+    'json_field',
+    'django_extensions',
+    'gifsearch.apps.giflookup',
+    'gifsearch.apps.gifgame',
     # Uncomment the next line to enable the admin:
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',

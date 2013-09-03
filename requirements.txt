@@ -1,0 +1,6 @@
+Django==1.5
+sqlite==3.7.17
+python-dateutil
+django-json-field
+django-extensions
+
