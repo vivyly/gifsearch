@@ -7,7 +7,8 @@ class GifMeta(models.Model):
 
 class GifObject(models.Model):
     guid = UUIDField()
-    reddit_id = models.CharField(null=True)
+    title = models.CharField(null=True)
+    src_id = models.CharField(null=True)
     created = models.DateTimeField('date published')
     updated = models.DateTimeField('date updated')
     src = models.URLField()
