@@ -1,4 +1,4 @@
-import praw, datetime, nltk
+import praw, nltk
 from .models import GifObject, GifMeta
 
 SUBREDDIT = "gif"
@@ -19,17 +19,16 @@ class RedditParser(object):
         return self.subreddit_list
 
     def save_gifs(self):
-        for link in self.subreddit_list:
+        subreddit_links = self.get_subreddit_list()
+        for link in subreddit_links:
             try:
-                gif = GifObject.objects.get(reddit_id=link.id)
+                gif = GifObject.objects.get(src_id=link.id)
             except GifObject.DoesNotExist:
                 gmeta = self.create_meta(self.parse_comments(link))
                 gif = GifObject()
                 gif.src_id = link.id
                 gif.src = link.url
                 gif.title = link.title
-                gif.created = datetime.datetime.now()
-                gif.updated = datetime.datetime.now()
                 gif.meta = gmeta
                 gif.save()
 
@@ -46,7 +45,8 @@ class RedditParser(object):
         return word_data
 
     def parse_comments(self, link):
-        comment_blocks = self.read_children(link) #depth first for now. TODO: needs switch for breadth first)
+        #depth first for now. TODO: needs switch for breadth first)
+        comment_blocks = self.read_children(link)
         word_data = self.nltk_tag_nouns(comment_blocks)
         return word_data
 

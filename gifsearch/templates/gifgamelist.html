@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+  {% for gif in gifs %}
+  <div class="gifblock">
+    <a href="/game/{{ gif.src_id }}"><img src={{ gif.src }}/></a>
+    <a href="/game/{{ gif.src_id }}">{{ gif.title }}</a>
+  </div>
+  {% endfor %}
+{% endblock content %}

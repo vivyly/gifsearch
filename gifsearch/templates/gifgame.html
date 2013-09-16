@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="gifobj">
+    <a href="/gif/{{ gifobj.src_id }}"><img src="{{ gifobj.src }}"></a>
+    <a href="/gif/{{ gifobj.src_id }}">{{ gifobj.title }}</a>
+</div>
+{{form}}
+{% endblock content %}

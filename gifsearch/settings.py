@@ -73,6 +73,7 @@ STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
+    '/home/vivien/Projects/gifsearch/gifsearch/static',
 )
 
 # List of finder classes that know how to find static files in
@@ -112,6 +113,7 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
+    '/home/vivien/Projects/gifsearch/gifsearch/templates',
 )
 
 INSTALLED_APPS = (
@@ -124,8 +126,9 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'json_field',
     'django_extensions',
-    'gifsearch.apps.giflookup',
-    'gifsearch.apps.gifgame',
+    'gifsearch.scraper',
+    'gifsearch.lookup',
+    'gifsearch.game',
     # Uncomment the next line to enable the admin:
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
