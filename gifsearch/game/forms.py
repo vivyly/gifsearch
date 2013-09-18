@@ -19,7 +19,6 @@ class GameMetaForm(forms.Form):
             self.gif = gifobj
         elif isinstance(gifid, str):
             self.gif = get_object_or_404(GifObject, guid=gifid)
-        #word_list = forms.CharField()
         for word_idx in range(0, self.word_limit):
             self.fields['word_%s' % word_idx] = forms.CharField()
 

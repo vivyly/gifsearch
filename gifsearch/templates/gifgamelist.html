@@ -1,9 +1,18 @@
 {% extends "base.html" %}
 {% block content %}
-  {% for gif in gifs %}
-  <div class="gifblock">
-    <a href="/game/{{ gif.src_id }}"><img src={{ gif.src }}/></a>
-    <a href="/game/{{ gif.src_id }}">{{ gif.title }}</a>
+  <div class="text-center">
+    <h1>Gif Word Game</h1>
   </div>
-  {% endfor %}
+  <div class="row">
+    <div class="span11">
+    {% block gifgame %}
+      {% for gif in gifs %}
+        <div class="gifblock">
+          <a href="/game/{{ gif.src_id }}"><img src={{ gif.src }}/></a>
+          <a href="/game/{{ gif.src_id }}">{{ gif.title }}</a>
+        </div>
+      {% endfor %}
+    {% endblock gifgame %}
+    </div>
+  </div>
 {% endblock content %}

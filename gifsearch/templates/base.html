@@ -3,21 +3,32 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>Gif Search Tagging Game</title>
+        <title>{% block title %}Gif Search Tagging Game{% endblock title %}</title>
         <meta name="viewport" content="width=device-width">
 
         <!-- Custom CSS -->
-        <link rel="stylesheet" href="/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+        {% block css %}
+        {% endblock css %}
 
         <!-- Custom JS -->
+        {% block js %}
+        {% endblock js %}
 
     </head>
     <body>
 
         <div class="container container-fluid">
           <div class="site row-fluid">
-              {% block content %}
-              {% endblock content %}
+              <div class="row">
+                  {% include "nav.html" %}
+              </div>
+              <div class="row">
+                <div class="span12">
+                {% block content %}
+                {% endblock content %}
+                </div>
+              </div>
           </div>
         </div> <!-- /container -->
 

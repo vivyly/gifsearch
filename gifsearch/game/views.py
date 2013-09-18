@@ -1,3 +1,6 @@
+import random
+
+from django.http import HttpResponseRedirect
 from django.template import RequestContext
 from django.shortcuts import get_object_or_404, render_to_response
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -5,7 +8,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from gifsearch.game.forms import GameMetaForm
 from gifsearch.scraper.models import GifObject
 
-GIFLIMIT = 10
+GIFLIMIT = 25
 
 def gifgamelist(request):
     gifobj = GifObject.objects.all()
@@ -27,10 +30,17 @@ def gifgamelist(request):
 
 def gifgame(request, gifid):
     gifobj = get_object_or_404(GifObject, src_id = gifid)
+    gifobjlist = list(GifObject.objects.all()[:GIFLIMIT]) #need to filter by user
+    random_gif = random.sample(gifobjlist, 1)
+    if random_gif:
+        next_url = '/game/%s' % random_gif[0].src_id
+    else:
+        next_url = '/'
     if request.POST:
         form = GameMetaForm(request.POST, gifobj=gifobj, wordlimit=5)
+        return HttpResponseRedirect(next_url)
     else:
         form = GameMetaForm(gifobj=gifobj, wordlimit=5)
     return render_to_response('gifgame.html',
-                    dict(form=form, gifobj=gifobj),
+                    dict(form=form, gifobj=gifobj, next_url=next_url),
                     context_instance=RequestContext(request))
